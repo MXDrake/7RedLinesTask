@@ -17,14 +17,20 @@ public class MainTest {
 		strings.add("34;45;52352;323;32");
 		strings.add("1;2;3;4;5;6;7;8;9");
 		strings.add("9;8;7;6;5;4;3;2;1");
+		strings.add("");
+		strings.add(null);
 
 		List expected1 = Arrays.asList(32, 34, 52352);
 		List expected2 = Arrays.asList(2, 4, 6, 8);
 		List expected3 = Arrays.asList(2, 4, 6, 8);
+		List expected4 = Arrays.asList();
+		List expected5 = Arrays.asList();
 
 		expectedArrays.add(expected1);
 		expectedArrays.add(expected2);
 		expectedArrays.add(expected3);
+		expectedArrays.add(expected4);
+		expectedArrays.add(expected5);
 
 	}
 
@@ -40,6 +46,7 @@ public class MainTest {
 	@Test
 	public void toIntArrayStream() throws Exception {
 		for (int i = 0; i < strings.size(); i++) {
+
 			int[] expected = expectedArrays.get(i).stream().mapToInt(x -> x).toArray();
 			int[] result = Main.toIntArrayStream(strings.get(i));
 			assertArrayEquals("Wrong array", expected, result);
